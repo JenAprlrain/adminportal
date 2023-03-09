@@ -35,20 +35,6 @@ function App() {
   const contract = new web3.eth.Contract(PhysicalTeesABI,contractAddress);
 
   useEffect(() => {
-    const loadWeb3 = async () => {
-      if (typeof window.ethereum !== 'undefined') {
-        try {
-          // Prompt user to connect their wallet
-          await window.ethereum.request({ method: 'eth_requestAccounts' });
-      
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
-        console.error('Please install MetaMask to use this app');
-      }
-    }
-
     const loadBlockchainData = async () => {
       const accounts = await web3.eth.getAccounts();
       setAccount(accounts[0]);
@@ -74,14 +60,24 @@ function App() {
       await getContractBalance();
     }
     
-    loadWeb3();
     loadBlockchainData();
   }, []);
 
+  
   const connectWallet = async () => {
-    const web3 = window.web3;
-    const accounts = await web3.eth.getAccounts();
-    setAccount(accounts[0]);
+    if (typeof window.ethereum !== 'undefined') {
+      try {
+        // Prompt user to connect their wallet
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const web3 = window.web3;
+        const accounts = await web3.eth.getAccounts();
+        setAccount(accounts[0]);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.error('Please install MetaMask to use this app');
+    }
   }
 
   const setMaxTeesFunc = async (e) => {
