@@ -1,21 +1,11 @@
 .App {
   text-align: center;
+  margin: 50px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+.App header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,15 +14,78 @@
   color: white;
 }
 
+.App-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 50px;
+}
+
+section {
+  margin-bottom: 50px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 5px;
+  margin-left: 10px;
+}
+
+button[type="submit"] {
+  margin-top: 20px;
+  padding: 5px 20px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 5px 20px;
+  margin: 20px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tees-sold {
+  border: 2px solid green;
+  padding: 10px;
+}
+
+.box {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.box-owner {
+  border: 1px solid red;
+  padding: 10px;
+  margin: 10px 0;
 }
