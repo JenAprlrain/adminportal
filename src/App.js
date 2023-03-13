@@ -31,7 +31,7 @@ function App() {
 
 
   const web3 = new Web3(window.ethereum);
-  const contractAddress = '0xEF85077aAB2f4a090c3F77a5d955d0Ad5D86A615';
+  const contractAddress = '0x550Ca3EEe22d484495488823d65F3c51ab23C634';
   const contract = new web3.eth.Contract(PhysicalTeesABI,contractAddress);
 
   useEffect(() => {
