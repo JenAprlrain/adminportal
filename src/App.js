@@ -84,18 +84,21 @@ function App() {
     e.preventDefault();
     await contract.methods.setmaxTees(maxTees).send({ from: account });
     setMaxTees(0);
+    window.location.reload();
   }
 
   const setPriceFunc = async (e) => {
     e.preventDefault();
     await contract.methods.setPrice(price).send({ from: account });
     setPrice(0);
+    window.location.reload();
   }
 
   const setInternationalPriceFunc = async (e) => {
     e.preventDefault();
     await contract.methods.setInternationalPrice(internationalPrice).send({ from: account });
     setInternationalPrice(0);
+    window.location.reload();
   }
 
   const markFulfilledFunc = async (orderId) => {
@@ -175,7 +178,7 @@ function App() {
   }
 
   const changeAdminFunc = async (newAdmin) => {
-    await contract.methods.changeAdmin(newAdmin).send({ from: account });
+    await contract.methods.setAdmin(newAdmin).send({ from: account });
     const _adminAddress = await contract.methods.admin().call();
     setAdminAddress(_adminAddress);
   }
