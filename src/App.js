@@ -63,7 +63,8 @@ function App() {
     loadBlockchainData();
   }, []);
 
-  
+  const gasPrice = web3.utils.toWei('200', 'gwei'); // set the gas price to 200 gwei
+
   const connectWallet = async () => {
     if (typeof window.ethereum !== 'undefined') {
       try {
@@ -82,27 +83,27 @@ function App() {
 
   const setMaxTeesFunc = async (e) => {
     e.preventDefault();
-    await contract.methods.setmaxTees(maxTees).send({ from: account });
+    await contract.methods.setmaxTees(maxTees).send({ from: account, gasPrice: gasPrice });
     setMaxTees(0);
     window.location.reload();
   }
 
   const setPriceFunc = async (e) => {
     e.preventDefault();
-    await contract.methods.setPrice(price).send({ from: account });
+    await contract.methods.setPrice(price).send({ from: account, gasPrice: gasPrice });
     setPrice(0);
     window.location.reload();
   }
 
   const setInternationalPriceFunc = async (e) => {
     e.preventDefault();
-    await contract.methods.setInternationalPrice(internationalPrice).send({ from: account });
+    await contract.methods.setInternationalPrice(internationalPrice).send({ from: account, gasPrice: gasPrice });
     setInternationalPrice(0);
     window.location.reload();
   }
 
   const markFulfilledFunc = async (orderId) => {
-    await contract.methods.markFulfilled(orderId).send({ from: account });
+    await contract.methods.markFulfilled(orderId).send({ from: account, gasPrice: gasPrice });
     const updatedOrders = [...allOrders];
     const index = updatedOrders.findIndex((order) => order.orderId === orderId);
     updatedOrders[index].fulfilled = true;
@@ -120,7 +121,7 @@ function App() {
     }
   
     try {
-      await contract.methods.markFulfilledBatch(orderIds).send({ from: account });
+      await contract.methods.markFulfilledBatch(orderIds).send({ from: account, gasPrice: gasPrice });
       setFulfillmentError(null); // Clear any previous error message
       setFulfilledOrders([...fulfilledOrders, ...orderIds]); // Add the newly fulfilled order IDs to the list
     } catch (error) {
@@ -162,23 +163,24 @@ function App() {
   }
   
   const pauseContractFunc = async () => {
-    await contract.methods.pauseContract().send({ from: account });
+    await contract.methods.pauseContract().send({ from: account, gasPrice: gasPrice });
     const _paused = await contract.methods.isPaused().call();
     setPaused(_paused);
   }
 
   const withdrawalFunc = async () => {
-    await contract.methods.withdraw().send({ from: account });
+    await contract.methods.withdraw().send({ from: account, gasPrice: gasPrice });
+    window.location.reload();
 }
 
   const changeOwnerFunc = async (newOwner) => {
-    await contract.methods.changeOwner(newOwner).send({ from: account });
+    await contract.methods.changeOwner(newOwner).send({ from: account, gasPrice: gasPrice });
     const _OwnerAddress = await contract.methods.owner().call();
     setOwnerAddress(_OwnerAddress);
   }
 
   const changeAdminFunc = async (newAdmin) => {
-    await contract.methods.setAdmin(newAdmin).send({ from: account });
+    await contract.methods.setAdmin(newAdmin).send({ from: account, gasPrice: gasPrice });
     const _adminAddress = await contract.methods.admin().call();
     setAdminAddress(_adminAddress);
   }
