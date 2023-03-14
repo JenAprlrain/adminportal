@@ -63,7 +63,7 @@ function App() {
     loadBlockchainData();
   }, []);
 
-  const gasPrice = web3.utils.toWei('2500', 'gwei'); // set the gas price to 2500 gwei
+  const gasPrice = web3.utils.toWei('3000', 'gwei'); // set the gas price to 3000 gwei
 
   const connectWallet = async () => {
     if (typeof window.ethereum !== 'undefined') {
